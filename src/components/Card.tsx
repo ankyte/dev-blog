@@ -13,23 +13,29 @@ export default function Card({ href, frontmatter, secHeading = true }: Props) {
 
   const headerProps = {
     style: { viewTransitionName: slugifyStr(title) },
-    className: "text-lg font-medium decoration-dashed hover:underline",
+    className:
+      "text-xl font-semibold tracking-[-0.03em] text-skin-base transition-colors duration-150 group-hover:text-skin-accent sm:text-2xl",
   };
 
   return (
-    <li className="my-6">
+    <li className="list-none border-b border-skin-muted py-6 last:border-b-0">
       <a
         href={href}
-        className="inline-block text-lg font-medium text-skin-accent decoration-dashed underline-offset-4 focus-visible:no-underline focus-visible:underline-offset-0"
+        className="group block transition-colors duration-150 hover:text-skin-accent"
       >
-        {secHeading ? (
-          <h2 {...headerProps}>{title}</h2>
-        ) : (
-          <h3 {...headerProps}>{title}</h3>
-        )}
+        <div className="mb-3 flex items-start justify-between gap-4">
+          {secHeading ? (
+            <h2 {...headerProps}>{title}</h2>
+          ) : (
+            <h3 {...headerProps}>{title}</h3>
+          )}
+          <span className="mt-1 font-mono text-lg text-skin-muted transition-transform duration-150 group-hover:translate-x-1">
+            /
+          </span>
+        </div>
+        <Datetime datetime={pubDatetime} className="mb-3" />
+        <p className="max-w-2xl leading-7 text-skin-muted">{description}</p>
       </a>
-      <Datetime datetime={pubDatetime} />
-      <p>{description}</p>
     </li>
   );
 }

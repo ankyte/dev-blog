@@ -11,13 +11,10 @@ import LinkButton from "@components/LinkButton.astro";
 
   <main id="main-content">
     <div class="not-found-wrapper">
+      <p class="eyebrow">Not found</p>
       <h1 aria-label="404 Not Found">404</h1>
-      <span aria-hidden="true">¯\_(ツ)_/¯</span>
-      <p>Page Not Found</p>
-      <LinkButton
-        href="/"
-        className="my-6 underline decoration-dashed underline-offset-8 text-lg"
-      >
+      <p>The page you tried to open doesn’t live in this archive.</p>
+      <LinkButton href="/" className="my-2">
         Go back home
       </LinkButton>
     </div>
@@ -28,15 +25,15 @@ import LinkButton from "@components/LinkButton.astro";
 
 <style>
   #main-content {
-    @apply mx-auto flex max-w-3xl flex-1 items-center justify-center;
+    @apply mx-auto flex max-w-3xl flex-1 items-center justify-center px-4 py-12;
   }
   .not-found-wrapper {
-    @apply mb-14 flex flex-col items-center justify-center;
+    @apply flex w-full flex-col items-center justify-center gap-4 border border-skin-line bg-skin-surface px-6 py-12 text-center sm:px-10 sm:py-16;
   }
   .not-found-wrapper h1 {
-    @apply text-9xl font-bold text-skin-accent;
+    @apply text-7xl font-semibold tracking-[-0.08em] text-skin-base sm:text-9xl;
   }
   .not-found-wrapper p {
-    @apply mt-4 text-2xl sm:text-3xl;
+    @apply max-w-xl text-base leading-8 text-skin-muted sm:text-lg;
   }
 </style>

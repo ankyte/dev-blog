@@ -1,6 +1,5 @@
 ---
 import { SOCIALS } from "@config";
-import LinkButton from "./LinkButton.astro";
 import socialIcons from "@assets/socialIcons";
 
 export interface Props {
@@ -13,22 +12,24 @@ const { centered = false } = Astro.props;
 <div class={`social-icons ${centered ? "flex" : ""}`}>
   {
     SOCIALS.filter(social => social.active).map(social => (
-      <LinkButton
+      <a
         href={social.href}
-        className="link-button"
+        class="social-link"
         title={social.linkTitle}
+        aria-label={social.linkTitle}
       >
         <Fragment set:html={socialIcons[social.name]} />
-      </LinkButton>
+      </a>
     ))
   }
 </div>
 
 <style>
   .social-icons {
-    @apply flex-wrap justify-center gap-1;
+    @apply flex flex-wrap items-center gap-3;
   }
-  .link-button {
-    @apply p-2 hover:rotate-6 sm:p-1;
+  .social-link {
+    @apply inline-flex h-9 w-9 items-center justify-center border text-skin-muted transition-colors duration-150 hover:border-skin-line hover:text-skin-base;
+    border-color: transparent;
   }
 </style>

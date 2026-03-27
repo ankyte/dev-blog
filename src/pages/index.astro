@@ -4,7 +4,6 @@ import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import LinkButton from "@components/LinkButton.astro";
-import Hr from "@components/Hr.astro";
 import Card from "@components/Card";
 import Socials from "@components/Socials.astro";
 import getSortedPosts from "@utils/getSortedPosts";
@@ -14,8 +13,6 @@ import { SOCIALS } from "@config";
 const posts = await getCollection("blog");
 
 const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-
 const socialCount = SOCIALS.filter(social => social.active).length;
 ---
 
@@ -23,65 +20,51 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   <Header />
   <main id="main-content">
     <section id="hero">
-      <h1 class="mr-2">Hi 👋, I'm Ankit!</h1>
-      <p>
-        I'm Ankit Kumar Sahu.
-        Currently I'm in my final year of BTech in Computer Science and Engineering with specialization and Artificial Intelligence and Machine Learning from Vellore Institute of Technology Chennai Campus.
-      </p>
-      <p>
-        Email me at
-        <LinkButton
-          className="hover:text-skin-accent underline underline-offset-4 decoration-dashed"
-          href="mailto:contact@ankitsahu.tech"
-        >
-          contact@ankitsahu.tech
-        </LinkButton>.
-      </p>
-      {
-        socialCount > 0 && (
-          <div class="social-wrapper">
-            <Socials />
-          </div>
-        )
-      }
+      <div class="hero-copy">
+        <p class="eyebrow">Field notes</p>
+        <h1>
+          Writing through<br>
+          <span>what I build.</span>
+        </h1>
+        <p class="hero-text">
+          I'm Ankit Kumar Sahu, a software engineer at an asset management
+          firm, writing about AI, systems design, and the practical side of
+          building software. Essays, build notes, and things I wish someone had
+          documented better.
+        </p>
+        <div class="hero-actions">
+          Reach me at
+          <LinkButton href="mailto:4nkitsahu@gmail.com" className="email-button">
+            4nkitsahu@gmail.com
+          </LinkButton>
+        </div>
+        {
+          socialCount > 0 && (
+            <div class="social-wrapper">
+              <Socials />
+            </div>
+          )
+        }
+      </div>
     </section>
-    <div class="h-6" />
-    {
-      featuredPosts.length > 0 && (
-        <>
-          <section id="featured">
-            <h2>Featured</h2>
-            <ul>
-              {featuredPosts.map(({ data }) => (
+
+    <section id="recent-posts">
+      <div class="section-heading">
+        <p class="eyebrow">Latest</p>
+        <h2>Recent writing</h2>
+      </div>
+      <ul>
+        {
+          sortedPosts.map(
+            ({ data }, index) =>
+              index < 4 && (
                 <Card
                   href={`/posts/${slugify(data)}`}
                   frontmatter={data}
                   secHeading={false}
                 />
-              ))}
-            </ul>
-          </section>
-          <Hr />
-        </>
-      )
-    }
-
-    <section id="recent-posts">
-      <h2>Recent Posts</h2>
-      <ul>
-        {
-          sortedPosts
-            .filter(({ data }) => !data.featured)
-            .map(
-              ({ data }, index) =>
-                index < 4 && (
-                  <Card
-                    href={`/posts/${slugify(data)}`}
-                    frontmatter={data}
-                    secHeading={false}
-                  />
-                )
-            )
+              )
+          )
         }
       </ul>
       <div class="all-posts-btn-wrapper">
@@ -101,39 +84,62 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 </Layout>
 
 <style>
-  /* ===== Hero Section ===== */
+  #main-content {
+    @apply mx-auto flex w-full max-w-4xl flex-col gap-12 px-4 pb-14;
+  }
   #hero {
-    @apply pb-6 pt-8;
+    @apply border border-skin-line bg-skin-surface px-5 py-10 sm:px-8 sm:py-14;
+  }
+  .hero-copy {
+    @apply flex max-w-4xl flex-col gap-6;
   }
   #hero h1 {
-    @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
+    @apply max-w-4xl text-5xl font-semibold tracking-[-0.06em] sm:text-7xl sm:leading-[0.94];
   }
-  #hero .rss-link {
-    @apply mb-6;
+  #hero h1 span {
+    @apply text-skin-muted;
   }
-  #hero .rss-icon {
-    @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
+  .hero-text {
+    @apply max-w-4xl text-lg leading-10 text-skin-muted sm:leading-[1.55];
   }
-  #hero p {
-    @apply my-2;
+  .hero-notes {
+    @apply flex flex-wrap gap-3;
+  }
+  .hero-chip {
+    @apply inline-flex items-center border px-3 py-1.5 font-mono text-[0.74rem] uppercase tracking-[0.18em];
+  }
+  .hero-chip-positive {
+    border-color: rgb(6 95 70 / 0.9);
+    color: rgb(94 234 212 / 0.92);
+  }
+  .hero-chip-muted {
+    @apply border-skin-line text-skin-muted;
+  }
+  .hero-chip-warm {
+    border-color: rgb(127 29 29 / 0.92);
+    color: rgb(248 113 113 / 0.92);
+  }
+  .hero-actions {
+    @apply mt-2 flex flex-col gap-3 sm:flex-row sm:items-center;
+  }
+  .email-button {
+    @apply font-mono tracking-[0.02em];
   }
   .social-wrapper {
-    @apply mt-4 flex flex-col sm:flex-row sm:items-center;
-  }
-  .social-links {
-    @apply mb-1 mr-2 whitespace-nowrap sm:mb-0;
+    @apply mt-3 pt-2;
   }
 
-  /* ===== Featured & Recent Posts Sections ===== */
-  #featured,
   #recent-posts {
-    @apply pb-6 pt-12;
+    @apply flex flex-col gap-4;
+  }
+  .section-heading {
+    @apply flex flex-col gap-2 border-b border-skin-muted pb-4;
   }
   #featured h2,
   #recent-posts h2 {
-    @apply text-2xl font-semibold tracking-wide;
+    @apply text-2xl font-semibold tracking-[-0.03em] sm:text-3xl;
   }
   .all-posts-btn-wrapper {
-    @apply my-8 text-center;
+    @apply mt-2;
   }
 </style>

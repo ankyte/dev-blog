@@ -5,20 +5,26 @@
 @layer base {
   :root,
   html[data-theme="light"] {
-    --color-fill: 251, 254, 251;
-    --color-text-base: 40, 39, 40;
-    --color-accent: 140, 78, 245;
-    --color-card: 140, 78, 245;
-    --color-card-muted: 140, 78, 245;
-    --color-border: 140, 78, 245;
+    --color-fill: 243, 243, 239;
+    --color-surface: 250, 250, 247;
+    --color-text-base: 20, 20, 18;
+    --color-text-muted: 112, 112, 107;
+    --color-accent: 20, 20, 18;
+    --color-card: 247, 247, 243;
+    --color-card-muted: 236, 236, 231;
+    --color-border: 182, 182, 175;
+    --color-border-muted: 214, 214, 207;
   }
   html[data-theme="dark"] {
-    --color-fill: 33, 39, 55;
-    --color-text-base: 234, 237, 243;
-    --color-accent: 140, 78, 245;
-    --color-card: 140, 78, 245;
-    --color-card-muted: 140, 78, 245;
-    --color-border: 140, 78, 245;
+    --color-fill: 12, 12, 11;
+    --color-surface: 17, 17, 16;
+    --color-text-base: 238, 238, 234;
+    --color-text-muted: 154, 154, 148;
+    --color-accent: 238, 238, 234;
+    --color-card: 20, 20, 19;
+    --color-card-muted: 30, 30, 28;
+    --color-border: 88, 88, 84;
+    --color-border-muted: 56, 56, 53;
   }
   #sun-svg,
   html[data-theme="dark"] #moon-svg {
@@ -28,46 +34,36 @@
   html[data-theme="dark"] #sun-svg {
     display: block;
   }
-  body {
-    @apply flex min-h-screen flex-col bg-skin-fill font-mono text-skin-base 
-    selection:bg-skin-accent selection:bg-opacity-70 selection:text-skin-inverted;
+  html {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
   }
-  section,
+  body {
+    @apply flex min-h-screen flex-col bg-skin-fill font-sans text-skin-base antialiased selection:bg-skin-accent selection:bg-opacity-90 selection:text-skin-inverted;
+    background-image:
+      radial-gradient(circle at top, rgba(var(--color-text-base), 0.05), transparent 30rem),
+      linear-gradient(rgba(var(--color-border-muted), 0.28) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--color-border-muted), 0.28) 1px, transparent 1px);
+    background-size: auto, 100% 2.75rem, 2.75rem 100%;
+    background-position: center top, center top, center top;
+  }
   footer {
-    @apply mx-auto max-w-3xl px-4;
+    @apply mx-auto w-full max-w-4xl px-4;
   }
   a {
-    @apply outline-2 outline-offset-1 outline-skin-fill 
-    focus-visible:no-underline focus-visible:outline-dashed;
+    @apply outline-2 outline-offset-2 outline-skin-fill transition-colors duration-150 focus-visible:no-underline;
   }
   svg {
-    @apply inline-block h-6 w-6 fill-skin-base group-hover:fill-skin-accent;
+    @apply inline-block h-5 w-5 shrink-0 fill-skin-base align-middle transition-colors duration-150 group-hover:fill-skin-accent;
+    overflow: visible;
   }
   svg.icon-tabler {
-    @apply inline-block h-6 w-6 scale-125 fill-transparent 
-    stroke-current stroke-2 opacity-90 group-hover:fill-transparent 
-    sm:scale-110;
+    @apply inline-block h-5 w-5 fill-transparent stroke-current stroke-[1.5] opacity-90 group-hover:fill-transparent;
   }
   .prose {
-    @apply prose-headings:!mb-3 prose-headings:!text-skin-base 
-    prose-h3:italic prose-p:!text-skin-base 
-    prose-a:!text-skin-base prose-a:!decoration-dashed prose-a:underline-offset-8
-    hover:prose-a:text-skin-accent prose-blockquote:!border-l-skin-accent
-    prose-blockquote:border-opacity-50 prose-blockquote:opacity-80
-    prose-figcaption:!text-skin-base prose-figcaption:opacity-70
-    prose-strong:!text-skin-base
-
-    
-    prose-code:rounded prose-code:bg-skin-card 
-    prose-code:bg-opacity-75 prose-code:p-1 prose-code:!text-skin-base 
+    @apply max-w-none prose-headings:!mb-4 prose-headings:!font-semibold prose-headings:!tracking-[-0.03em] prose-headings:!text-skin-base prose-h1:!text-4xl prose-h2:!mt-12 prose-h2:!text-2xl prose-h3:!mt-10 prose-h3:!text-xl prose-p:!text-skin-base prose-p:!leading-8 prose-a:!text-skin-base prose-a:!underline prose-a:decoration-current prose-a:underline-offset-4 hover:prose-a:!text-skin-accent prose-blockquote:!border-l prose-blockquote:!border-skin-line prose-blockquote:!bg-skin-card prose-blockquote:!px-6 prose-blockquote:!py-4 prose-blockquote:not-italic prose-figcaption:!text-skin-muted prose-strong:!text-skin-base prose-hr:!border-skin-line prose-li:!text-skin-base prose-li:marker:!text-skin-muted prose-table:text-skin-base prose-th:border prose-th:border-skin-line prose-th:bg-skin-card prose-th:px-4 prose-th:py-3 prose-td:border prose-td:border-skin-line prose-td:px-4 prose-td:py-3 prose-img:mx-auto prose-img:!mt-3 prose-img:border prose-img:border-skin-line prose-img:bg-skin-card prose-pre:!border prose-pre:!border-skin-line prose-pre:!bg-skin-card prose-pre:!px-5 prose-pre:!py-4 prose-code:rounded-none prose-code:border prose-code:border-skin-line prose-code:bg-skin-card prose-code:px-1.5 prose-code:py-1 prose-code:font-mono prose-code:text-[0.92em] prose-code:!text-skin-base
     prose-code:before:!content-[''] prose-code:after:!content-['']
-    prose-pre:!text-skin-base prose-ol:!text-skin-base 
-    prose-ul:overflow-x-clip prose-ul:!text-skin-base prose-li:marker:!text-skin-accent
-    prose-table:text-skin-base prose-th:border
-    prose-th:border-skin-line prose-td:border 
-    prose-td:border-skin-line prose-img:mx-auto 
-    prose-img:!mt-2 prose-img:border-2 
-    prose-img:border-skin-line prose-hr:!border-skin-line;
+    prose-pre:!text-skin-base prose-ol:!text-skin-base prose-ul:overflow-x-clip prose-ul:!text-skin-base;
   }
   .prose a {
     @apply break-words hover:!text-skin-accent;
@@ -90,38 +86,44 @@
     @apply hidden;
   }
 
-  /* ===== scrollbar ===== */
-  html {
-    overflow-y: scroll;
-  }
-
-  /* width */
   ::-webkit-scrollbar {
-    @apply w-3;
+    @apply h-3 w-3;
   }
-
-  /* Track */
   ::-webkit-scrollbar-track {
     @apply bg-skin-fill;
   }
-
-  /* Handle */
   ::-webkit-scrollbar-thumb {
+    @apply border border-skin-fill bg-skin-card-muted;
+  }
+  ::-webkit-scrollbar-thumb:hover {
     @apply bg-skin-card;
   }
-
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-skin-card-muted;
-  }
-
   code,
   blockquote {
     word-wrap: break-word;
   }
-
+  input,
+  textarea,
+  select {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus {
+    -webkit-text-fill-color: rgb(var(--color-text-base));
+    -webkit-box-shadow: 0 0 0 1000px rgb(var(--color-card)) inset;
+    transition: background-color 9999s ease-in-out 0s;
+  }
   pre > code {
     white-space: pre;
+  }
+  ::selection {
+    text-shadow: none;
   }
 }
 
@@ -129,7 +131,22 @@
   .display-none {
     @apply hidden;
   }
+  .surface-panel {
+    @apply border border-skin-line bg-skin-surface;
+  }
+  .eyebrow {
+    @apply font-mono text-[0.7rem] uppercase tracking-[0.28em] text-skin-muted;
+  }
+  .section-title {
+    @apply text-2xl font-semibold tracking-[-0.03em] sm:text-3xl;
+  }
+  .subtle-text {
+    @apply text-sm leading-7 text-skin-muted;
+  }
+  .interactive-border {
+    @apply border border-skin-line transition-colors duration-150 hover:border-skin-accent focus-visible:border-skin-accent;
+  }
   .focus-outline {
-    @apply outline-2 outline-offset-1 outline-skin-fill focus-visible:no-underline focus-visible:outline-dashed;
+    @apply outline-2 outline-offset-2 outline-skin-fill focus-visible:no-underline;
   }
 }

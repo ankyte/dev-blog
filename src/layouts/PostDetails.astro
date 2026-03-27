@@ -33,22 +33,29 @@ const ogUrl = new URL(
   canonicalURL={canonicalURL}
 >
   <Header />
-  <div class="mx-auto flex w-full max-w-3xl justify-start px-2">
+  <div class="mx-auto flex w-full max-w-4xl justify-start px-4">
     <button
-      class="focus-outline mb-2 mt-8 flex hover:opacity-75"
+      class="focus-outline mb-2 mt-8 flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-skin-muted hover:text-skin-accent"
       onclick="history.back()"
     >
       <svg xmlns="http://www.w3.org/2000/svg"
         ><path
           d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"
         ></path>
-      </svg><span>Go back</span>
+      </svg><span>Back</span>
     </button>
   </div>
   <main id="main-content">
-    <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
-    <Datetime datetime={pubDatetime} size="lg" className="my-2" />
-    <article id="article" role="article" class="prose mx-auto mt-8 max-w-3xl">
+    <section class="post-hero">
+      <p class="eyebrow">Article</p>
+      <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
+      <Datetime datetime={pubDatetime} size="lg" className="mt-2" />
+    </section>
+    <article
+      id="article"
+      role="article"
+      class="prose surface-panel mx-auto max-w-3xl px-5 py-8 sm:px-8 sm:py-10"
+    >
       <Content />
     </article>
 
@@ -61,12 +68,18 @@ const ogUrl = new URL(
 
 <style>
   main {
-    @apply mx-auto w-full max-w-3xl px-4 pb-12;
+    @apply mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 pb-14;
+  }
+  .post-hero {
+    @apply w-full border-b border-skin-muted pb-8;
   }
   .post-title {
-    @apply text-2xl font-semibold text-skin-accent;
+    @apply text-3xl font-semibold tracking-[-0.04em] text-skin-base sm:text-5xl;
+  }
+  .post-description {
+    @apply max-w-2xl text-base leading-8 text-skin-muted sm:text-lg;
   }
   .tags-container {
-    @apply my-8;
+    @apply flex flex-wrap gap-y-2 border-t border-skin-muted pt-5;
   }
 </style>

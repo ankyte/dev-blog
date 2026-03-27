@@ -45,8 +45,7 @@ const sortTagsPost = getSortedPosts(tagPosts);
     titleTransition={tag}
     pageDesc={`All the articles with the tag "${tag}".`}
   >
-    <h1 slot="title" transition:name={tag}>{`Tag:${tag}`}</h1>
-    <ul>
+    <ul class="tag-posts-list">
       {
         sortTagsPost.map(({ data }) => (
           <Card href={`/posts/${slugify(data)}`} frontmatter={data} />
@@ -56,3 +55,9 @@ const sortTagsPost = getSortedPosts(tagPosts);
   </Main>
   <Footer />
 </Layout>
+
+<style>
+  .tag-posts-list {
+    @apply -mt-2;
+  }
+</style>

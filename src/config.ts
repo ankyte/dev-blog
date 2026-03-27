@@ -3,8 +3,8 @@ import type { Site, SocialObjects } from "./types";
 export const SITE: Site = {
   website: "https://ankitsahu.tech",
   author: "Ankit Sahu",
-  desc: "Personal blog of Ankit Sahu.",
-  title: "Ankit Sahu",
+  desc: "Personal blog of ankyte.",
+  title: "ankyte",
   ogImage: "logo.svg",
   lightAndDarkMode: true,
   postPerPage: 3,
@@ -13,7 +13,7 @@ export const SITE: Site = {
 export const LOCALE = ["en-EN"]; // set to [] to use the environment default
 
 export const LOGO_IMAGE = {
-  enable: true,
+  enable: false,
   svg: true,
   width: 100,
   height: 100,
@@ -22,7 +22,7 @@ export const LOGO_IMAGE = {
 export const SOCIALS: SocialObjects = [
   {
     name: "Github",
-    href: "https://github.com/ankitsawho",
+    href: "https://github.com/ankyte",
     linkTitle: ` ${SITE.title} on Github`,
     active: true,
   },
@@ -54,7 +54,7 @@ export const SOCIALS: SocialObjects = [
     name: "Twitter",
     href: "https://twitter.com/ankitsawho",
     linkTitle: `${SITE.title} on Twitter`,
-    active: true,
+    active: false,
   },
   {
     name: "Twitch",
@@ -66,7 +66,7 @@ export const SOCIALS: SocialObjects = [
     name: "YouTube",
     href: "https://youtube.com/@ankitsawho",
     linkTitle: `${SITE.title} on YouTube`,
-    active: true,
+    active: false,
   },
   {
     name: "WhatsApp",
