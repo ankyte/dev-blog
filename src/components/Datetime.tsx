@@ -9,8 +9,10 @@ export interface Props {
 export default function Datetime({ datetime, size = "sm", className }: Props) {
   return (
     <div
-      className={`flex items-center gap-2 font-mono uppercase tracking-[0.18em] text-skin-muted ${
-        size === "sm" ? "text-[0.68rem]" : "text-[0.72rem]"
+      className={`flex flex-wrap items-center gap-x-2 gap-y-1 font-mono uppercase leading-6 text-skin-muted ${
+        size === "sm"
+          ? "text-[0.68rem] tracking-[0.16em]"
+          : "text-[0.68rem] tracking-[0.16em] sm:text-[0.72rem] sm:tracking-[0.18em]"
       } ${className}`}
     >
       <svg
@@ -25,7 +27,7 @@ export default function Datetime({ datetime, size = "sm", className }: Props) {
         <path d="M5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z"></path>
       </svg>
       <span className="sr-only">Posted on:</span>
-      <span>
+      <span className="min-w-0 break-words">
         <FormattedDatetime datetime={datetime} />
       </span>
     </div>

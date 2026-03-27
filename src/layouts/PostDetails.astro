@@ -33,19 +33,17 @@ const ogUrl = new URL(
   canonicalURL={canonicalURL}
 >
   <Header />
-  <div class="mx-auto flex w-full max-w-4xl justify-start px-4">
+  <main id="main-content">
     <button
-      class="focus-outline mb-2 mt-8 flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-skin-muted hover:text-skin-accent"
+      class="focus-outline flex w-fit items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.2em] text-skin-muted hover:text-skin-accent sm:text-[0.72rem] sm:tracking-[0.22em]"
       onclick="history.back()"
     >
-      <svg xmlns="http://www.w3.org/2000/svg"
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
         ><path
           d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"
         ></path>
       </svg><span>Back</span>
     </button>
-  </div>
-  <main id="main-content">
     <section class="post-hero">
       <p class="eyebrow">Article</p>
       <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
@@ -54,7 +52,7 @@ const ogUrl = new URL(
     <article
       id="article"
       role="article"
-      class="prose surface-panel mx-auto max-w-3xl px-5 py-8 sm:px-8 sm:py-10"
+      class="prose mx-auto w-full max-w-none border-y border-skin-line bg-skin-surface px-4 py-7 sm:max-w-3xl sm:border sm:px-8 sm:py-10"
     >
       <Content />
     </article>
@@ -68,18 +66,18 @@ const ogUrl = new URL(
 
 <style>
   main {
-    @apply mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 pb-14;
+    @apply mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 pb-12 sm:gap-8 sm:pb-14;
   }
   .post-hero {
-    @apply w-full border-b border-skin-muted pb-8;
+    @apply w-full border-b border-skin-muted pb-6 sm:pb-8;
   }
   .post-title {
-    @apply text-3xl font-semibold tracking-[-0.04em] text-skin-base sm:text-5xl;
+    @apply max-w-[16ch] text-3xl font-semibold leading-tight tracking-[-0.04em] text-skin-base sm:max-w-none sm:text-5xl;
   }
   .post-description {
     @apply max-w-2xl text-base leading-8 text-skin-muted sm:text-lg;
   }
   .tags-container {
-    @apply flex flex-wrap gap-y-2 border-t border-skin-muted pt-5;
+    @apply flex flex-wrap gap-y-2 border-t border-skin-muted pt-4 sm:pt-5;
   }
 </style>
